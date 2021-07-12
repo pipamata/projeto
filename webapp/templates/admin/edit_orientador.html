@@ -1,0 +1,80 @@
+{% extends 'admin/base_admin.html' %}
+{% block page_title %} Editar Orientador {% endblock page_title %}
+{% block content %}
+
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <h3>Editar Orientador | Username : {{ orientador.admin.username }} | #ID : {{ orientador.admin.id }}</h3>
+            <p class="text-subtitle text-muted">Aqui poderá ver editar os detalhes do Docente Orientador escolhido.</p>
+        </div>
+    </div>
+</div>
+
+<form role="form" action="/edit_orient_save" method="POST">
+    {% csrf_token %}
+    <div class="row match-height">
+        <div class="col-md-6 col-12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-body">
+                        <form class="form form-vertical">
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="first-name-vertical">Username</label>
+                                            <input type="text" id="username-name-vertical" class="form-control" value="{{ orientador.admin.username }}"
+                                                name="username" placeholder="Username">
+                                            <input type="hidden" value="{{ orientador.admin.id }}"
+                                                name="orientador_id" >
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="first-name-vertical">First Name</label>
+                                            <input type="text" id="first-name-vertical" class="form-control" value="{{ orientador.admin.first_name }}"
+                                                name="fname" placeholder="First Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="last-name-vertical">Last Name</label>
+                                            <input type="text" id="last-name-vertical" class="form-control" name="lname" value="{{ orientador.admin.last_name }}"
+                                                placeholder="Last Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="email-id-vertical">Email</label>
+                                            <input type="email" id="email-id-vertical" class="form-control" value="{{ orientador.admin.email }}"
+                                                name="email" placeholder="Email">
+                                        </div>
+                                    </div> 
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary me-1 mb-1">Alterar e guardar
+                                            Orientador</button>
+                                        <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                    </div>
+                                    <div class="form-group">
+                                        {% if messages %}
+                                        {% for message in messages %}
+                                        {% if message.tags == 'error' %}
+                                        <div class="alert alert-danger mt-2">{{ message }}</div>
+                                        {% endif %}
+                                        {% if message.tags == 'success' %}
+                                        <div class="alert alert-success mt-2">{{ message }}</div>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,143 @@
+{% extends 'aluno/base_aluno.html' %}
+{% load static %}
+{% block page_title %} Aluno | Informações {% endblock page_title %}
+{% block content %}
+
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>Aluno</h3>
+                <p class="text-subtitle text-muted">Aqui poderá ver os critérios de avaliação, notícias e dados
+                    importantes da unidade curricular Projeto.</p>
+            </div>
+        </div>
+    </div>
+    <section class="section">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Critérios de Avaliação</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>A avaliação na unidade curricular de projeto contempla <b> três aspetos principais: </b> </p>
+                        <ul>
+                            <li> a capacidade técnica do aluno,</li>
+                            <li> a qualidade do relatório entregue, </li>
+                            <li> a qualidade da apresentação/defesa do trabalho desenvolvido.</li>
+                            <ul>
+                    </div>
+
+                    <div class="col-md-6">
+                        <p>Estes aspetos serão avaliados por <b>um júri de três elementos: </b> </p>
+                        <ul>
+                            <li> o coordenador ou pessoa nomeada por ele para presidir ao júri,</li>
+                            <li> o orientador, </li>
+                            <li> o arguente.</li>
+                            <ul>
+                    </div>
+                </div>
+
+                <p> Os elementos do júri serão professores do departamento de informática e, eventualmente, um
+                    representante de uma empresa envolvida no projeto, caso aplicável. Inerente à sua tarefa de
+                    supervisão do projeto, ao orientador é possível a avaliação durante todo o período
+                    ensino-aprendizagem, enquanto que o arguente e o coordenador fazem a sua avaliação no final do
+                    projeto, após uma defesa oral do mesmo. </p>
+
+                <div class="col-md-6">
+                    <p>No final do semestre, <b> cada estudante deve entregar: </b> </p>
+                    <ul>
+                        <li> os resultados esperados do projeto (e.g., o código desenvolvido e a aplicação, sistema ou
+                            plataforma funcional),</li>
+                        <li> e o respetivo relatório do projeto. </li>
+                    <ul>
+                </div>
+                <p>O orientador responsável por cada projeto emite um parecer indicando se concorda com a entrega e
+                    defesa do projeto perante um júri.</p>
+
+
+                <div class="col-md-6">
+                    <p>Cada estudante deve ainda <b>preparar uma apresentação e uma defesa: </b> </p>
+                    <ul>
+                        <li> O orientador e o arguente avaliam a capacidade técnica, a qualidade do relatório e a
+                            qualidade da apresentação.</li>
+                        <li>O presidente do júri avalia a qualidade do relatório e da apresentação. </li>
+                    <ul>
+                </div>
+
+                <hr>
+
+                <div class="card-header">
+                    <h4 class="card-title">Classificação Final</h4>
+                </div>
+                <div class="card-body">
+                    <p> A <b>nota final (N) do aluno na unidade curricular é a média ponderada</b>, arredondada às unidades,
+                        das classificações dos elementos do júri. </p>
+
+                    <p> A nota que o orientador atribuir ao aluno vale 45% da nota final, a nota que o arguente atribuir
+                        ao aluno vale 40% da nota final e a nota que o presidente do júri atribuir ao aluno vale 15% da
+                        nota final. </p>
+
+                    <p> As penalizações (Pen) são subtraídas a esta nota. <b> Cada dia útil de atraso na entrega é
+                        penalizado em 3 valores. </b> </p>
+
+                    <p>  isto é: <b> N = 0.45 * Or + 0.40 * Ar + 0.15 * Pr - Pen. </b></p>
+                </div>
+
+                <hr>
+
+                <div class="card-header">
+                    <h4 class="card-title">Aprovação à Unidade Curricular</h4>
+                </div>
+                <div class="card-body">
+                    <p> A aprovação a esta unidade curricular depende da nota final ser superior ou igual a 10 e do trabalho ter merecido o parecer favorável do orientador à sua defesa, i.e., </p>
+
+                    <ul>
+                        <li>Se (Parecer Favorável) e (N >= 10), então Aprovado;</li>
+                        <li>Caso contrário, Reprovado. </li>
+                    <ul>
+                    
+                </div>
+            </div>
+
+        </div>
+        <hr class="mb-4">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Notícias Importantes</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>A tutoria de <b> 19 Março </b> contará com a participação especial de Paulo Silva (alumni),
+                            Cyber Security Consultant na Axians, Lisboa, Portugal</p>
+                        <p>A tutoria de <b> 26 Março </b> contará com a participação especial de Rui Branco, DevOps
+                            Engineer na Deutsche Börse Group, Praga, Rep. Checa</p>
+                        <p>A tutoria de <b> 9 Abril </b> contará com a participação especial de Diogo Pinheiro (alumni),
+                            MSc. student at the KTH Royal Institute of Technology, Estocolmo, Suécia</p>
+                        <p>A tutoria de <b> 14 Maio </b> contará com a participação especial do Dr. Paulo Saraiva,
+                            Senior Manager da INETUM, Tortosendo, Portugal</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Datas Importantes</h4>
+                    </div>
+                    <div class="card-body">
+
+                        <p> <b><u> Exame de Época Normal </b></u> </p>
+                        <p>Data limite de entrega sem penalização: <b> 21/06/2021 </b>, 17:30h (Segunda-feira), através
+                            do Moodle.</p>
+                        <p> <b><u> Exame de Época Especial </b></u> </p>
+                        <p>Data limite de entrega sem penalização: <b> 12/07/2021 </b>, 17:30h (Segunda-feira), através
+                            do Moodle.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

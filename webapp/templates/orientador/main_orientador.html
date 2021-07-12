@@ -1,0 +1,155 @@
+{% extends 'orientador/base_orientador.html' %}
+{% load static %}
+{% block page_title %} Orientador | Página Pessoal {% endblock page_title %}
+{% block content %}
+
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>Docente Orientador</h3>
+                <p class="text-subtitle text-muted">Aqui poderá ver os dados da sua conta e outros detalhes
+                    importantes.</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="section">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-content">
+                        <img class="card-img-top img-fluid" src="{% static 'assets/images/bg/gradient.png' %}"
+                            alt="Card gradient" style="height: 5rem" />
+                        <div class="card-body">
+                            <h4 class="card-title">Dados Pessoais</h4>
+                            <p class="card-text">
+                                <i class="bi bi-person-fill"></i> <b>Username:</b> {{ user.username }}
+                            </p>
+                            <p class="card-text">
+                                <i class="bi bi-person-lines-fill "></i> <b>Nome:</b> {{ user.first_name }}
+                                {{ user.last_name }}
+                            </p>
+                            <p class="card-text">
+                                <i class="bi bi-envelope-fill"></i> <b>Email:</b> {{ user.email }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-header" style="padding-bottom: 0.2rem;">
+                        <i class="bi bi-collection-fill fs-3"></i>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Nº de Propostas criadas</h5>
+                        <p class="card-text fs-3"><b>{{count}}</b></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <h4 class="card-title">Nova Proposta</h4>
+                            <p class="card-text muted">
+                                Será redirecionado para poder criar uma nova proposta.
+                            </p>
+                            <a href="{{ add_proposta }}" class="btn btn-primary">Criar Proposta</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="section">
+        <hr>
+        <h3>Propostas</h3>
+        <p class="text-subtitle text-muted">Aqui poderá ver os detalhes das suas propostas, incluindo o aluno a que foi
+            atribuída.</p>
+        <div class="row">
+
+            {% for proposta in propostas %}
+            {% if proposta.orientador_id.admin_id == user.id %}
+            <div class="col-md-6 col-sm-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <!-- {{proposta.orientador_id.admin_id}} se forem iguais {{user.id}} entao mostrar propostas -->
+                            <h4 class="card-title">Proposta {{proposta.id}} - {{proposta.titulo}}</h4>
+                            <p class="card-text">
+                                <b>Título:</b> {{proposta.titulo}}
+                            </p>
+                            <p class="card-text">
+                                <b>Objetivo:</b> {{proposta.objetivos}}
+                            </p>
+                            <p class="card-text">
+                                <b>Aluno(a):</b>
+                                
+                                {% for user in users %}
+                                    {% ifequal proposta.aluno_id.admin_id user.id %}
+                                        <span class="text-muted font-semibold"> {{user.first_name}} {{user.last_name}} </span>
+                                    {% endifequal %}
+                                {% endfor %}
+
+                                <!-- caso a proposta nao tenha ainda aluno -->
+                                {% ifequal proposta.aluno_id null %}
+                                <span class="text-muted">
+                                    Proposta não atribuída
+                                </span>
+                                {% endifequal %}
+
+                                {{proposta.aluno.id}}
+                            </p>
+
+                            <hr>
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <a href="/orientador_list_proposta/{{ proposta.id }}" class="btn btn-primary">Ver
+                                        Proposta</a>
+                                </div>
+                                
+                                <div class="col-md-9">
+                                <form role="form" action="/atrib_aluno" method="POST">
+                                {% csrf_token %}
+                                        <h6>Atribuir proposta</h6>
+                                        <div class="input-group">
+                                            <select class="form-select" name="atribuir">
+                                                <option disabled="true" selected> -- Escolha um(a) aluno(a) -- </option>
+                                                {% for aluno in alunos %}
+                                                    {% for user in users %}
+                                                        {% ifequal aluno.admin_id user.id %}
+                                                            <option>{{ user.username }} </option>
+                                                        {% endifequal %}
+                                                    {% endfor %}
+                                                {% endfor %}
+                                            </select>
+                                            <button type="submit" class="btn btn-primary">Confirmar</button>
+                                            <input type="hidden" value="{{ proposta.id }}" name="proposta" >
+                                        </div>
+                                </form>    
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <img class="card-img-bottom img-fluid" src="{% static 'assets/images/bg/gradient.png' %}"
+                            alt="Card gradient" style="height: 1rem; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+    </section>
+</div>
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'aluno/base_aluno.html' %}
+{% block page_title %} Listagem de Propostas {% endblock page_title %}
+{% block content %}
+
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <h3>Listagem de Propostas</h3>
+            <p class="text-subtitle text-muted">Nesta página poderá visualizar numa tabela todas as propostas existentes, bem como alguns dos seus detalhes.</p>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="table-striped">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-content">
+                <!-- table striped -->
+                <div class="table-responsive">
+                    <table class="table table-striped mb-0">
+                        <thead>
+                            <tr>
+                                <th>ORIENTADOR</th>
+                                <th>TÍTULO</th>
+                                <th>ALUNO</th>
+                                <th>DETALHES</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+
+                            {% for proposta in propostas %}
+                            <tr>
+                        
+                                {% for user in users %}
+                                    {% ifequal proposta.orientador_id.id user.id %}
+                                    <td>
+                                        {{user.username}}
+                                    </td>
+                                    {% endifequal %}
+                                {% endfor %}
+
+                                <td>{{proposta.titulo}}</td>
+                                <td>
+                                {% for user in users %}
+                                    {% ifequal proposta.aluno_id.admin_id user.id %}
+                                        <span class="text-muted font-semibold"> {{user.first_name}} {{user.last_name}} </span>
+                                    {% endifequal %}
+                                {% endfor %}
+                                </td>
+                                <td><a href="/aluno_list_proposta/{{ proposta.id }}" class="btn btn-primary">Ver Proposta</a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

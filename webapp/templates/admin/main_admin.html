@@ -1,0 +1,105 @@
+{% extends 'admin/base_admin.html' %}
+{% block page_title %} Administrador {% endblock page_title %}
+{% block content %}
+
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>Administador</h3>
+                <!--<p class="text-subtitle text-muted"></p>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-content">
+    <div class="row">
+        <div class="col-6 col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body px-3 py-4-5">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div  class=" stats-icon purple" style="padding-right: 16px; padding-bottom: 18px">
+                                <i class="bi bi-people-fill fs-2"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <h6 class="text-muted font-semibold">Nº de Utilizadores</h6>
+                            <h6 class="font-extrabold mb-0">{{ countTotal }}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body px-3 py-4-5">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div  class=" stats-icon blue" style="padding-right: 16px; padding-bottom: 18px">
+                                <i class="bi bi-people-fill fs-2"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <h6 class="text-muted font-semibold">Nº de Orientadores</h6>
+                            <h6 class="font-extrabold mb-0">{{ countOrient }}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body px-3 py-4-5">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div  class=" stats-icon green" style="padding-right: 16px; padding-bottom: 18px">
+                                <i class="bi bi-people-fill fs-2"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <h6 class="text-muted font-semibold">Nº de Alunos</h6>
+                            <h6 class="font-extrabold mb-0">{{ countAluno }}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body px-3 py-4-5">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="stats-icon red" style="padding-right: 16px; padding-bottom: 18px">
+                                <i class="bi bi-collection-fill fs-2"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <h6 class="text-muted font-semibold">Nº de Propostas</h6>
+                            <h6 class="font-extrabold mb-0">{{ countProp }}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="section">
+        <div class="card">
+            <h5 class="card-header pb-4" style="background: #435ebe; color:aliceblue;">Utilizadores</h5>
+
+            {% for users in users %}
+            
+            <div class="card-body pt-3 pb-2">
+              <h5 class="card-title">{{users.first_name}} {{users.last_name}}</h5>
+              <p class="card-text">Email: <span style="color: #435ebe; ">{{users.email}}</span></p> <span>Username: <span style="color: #435ebe; ">{{users.username}}</span> </span>
+            </div>
+            <hr>
+
+              {% endfor %}
+        </div>
+    </section>
+</div>
+
+{% endblock %}

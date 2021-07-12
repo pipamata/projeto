@@ -1,0 +1,69 @@
+{% extends 'aluno/base_aluno.html' %}
+{% load static %}
+{% block page_title %} Aluno | Página Pessoal {% endblock page_title %}
+{% block content %}
+
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>Aluno</h3>
+                <p class="text-subtitle text-muted">Aqui poderá ver os dados da sua conta e outros detalhes importantes.</p>
+            </div>
+        </div>
+    </div>
+    
+    <section class="section">
+        <div class="row">    
+        <div class="col-md-6 col-sm-12">
+            <div class="card">
+                <div class="card-content"> 
+                    <img class="card-img-top img-fluid" src="{% static 'assets/images/bg/gradient.png' %}"
+                        alt="Card gradient" style="height: 5rem"/>
+                    <div class="card-body">
+                        <h4 class="card-title">Dados Pessoais</h4>
+                        <p class="card-text">
+                            <i class="bi bi-person-fill"></i> <b>Username:</b> {{ user.username }}
+                        </p>
+                        <p class="card-text">
+                            <i class="bi bi-person-lines-fill "></i> <b>Nome:</b> {{ user.first_name }} {{ user.last_name }}
+                        </p>
+                        <p class="card-text">
+                            <i class="bi bi-envelope-fill"></i> <b>Email:</b> {{ user.email }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% for proposta in propostas %}
+        {% if proposta.aluno_id.admin_id == user.id %}
+        <div class="col-md-6 col-sm-12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-body">
+                        <h4 class="card-title">Proposta Escolhida</h4>
+                        <p class="card-text">
+                            <b>Título:</b> {{proposta.titulo}}
+                        </p>
+                        <p class="card-text">
+                            <b>Orientador:</b>
+                            {% for user in users %}
+                                {% ifequal proposta.orientador_id.admin_id user.id %}
+                                    <span class="text-muted font-semibold"> {{user.first_name}} {{user.last_name}} </span>
+                                {% endifequal %}
+                            {% endfor %}
+                        </p>
+                        <a href="/aluno_list_proposta/{{ proposta.id }}" class="btn btn-primary">Ver
+                                        Proposta</a>
+                    </div>
+                    <img class="card-img-bottom img-fluid" src="{% static 'assets/images/bg/gradient.png' %}"
+                        alt="Card gradient" style="height: 1rem; object-fit: cover;">
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    </section>
+</div>
+{% endblock %}

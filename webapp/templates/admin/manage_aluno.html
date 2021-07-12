@@ -1,0 +1,50 @@
+{% extends 'admin/base_admin.html' %}
+{% block page_title %} Gerir Orientadores {% endblock page_title %}
+{% block content %}
+
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <h3>Gerir Alunos</h3>
+            <p class="text-subtitle text-muted">Aqui poderá ver e alterar detalhes das contas dos Alunos pertencentes ao Sistema de Gestão da Unidade Curricular Projeto.</p>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="table-striped">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-content">
+                <!-- table striped -->
+                <div class="table-responsive">
+                    <table class="table table-striped mb-0">
+                        <thead>
+                            <tr>
+                                <th>USERNAME</th>
+                                <th>EMAIL</th>
+                                <th>FIRST NAME</th>
+                                <th>LAST NAME</th>
+                                <th>DATA DE ADESÃO</th>
+                                <th>EDITAR</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for aluno in alunos %}
+                            <tr>
+                                <td>{{ aluno.admin.username }}</td> 
+                                <td>{{ aluno.admin.email }}</td>
+                                <td>{{ aluno.admin.first_name }}</td>
+                                <td>{{ aluno.admin.last_name }}</td>
+                                <td>{{ aluno.admin.date_joined }}</td>
+                                <td><a href="/edit_aluno/{{ aluno.admin.id }}" class="btn btn-primary">Edit</a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
